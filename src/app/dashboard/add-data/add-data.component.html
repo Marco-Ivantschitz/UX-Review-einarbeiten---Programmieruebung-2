@@ -1,0 +1,40 @@
+<form [formGroup]="addChildForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Ihr Kind anmelden!</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" type="text" formControlName="name">
+        <mat-error *ngIf="addChildForm.get('name').hasError('required')">Name ist erforderlich</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Geburtsdatum</mat-label>
+        <input matInput placeholder="Geburtsdatum" type="date" formControlName="birthDate">
+        <mat-error *ngIf="addChildForm.get('birthDate').hasError('required')">Geburtsdatum ist erforderlich</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Kindergarten auswählen</mat-label>
+        <mat-select formControlName="kindergardenId">
+          <mat-option [value]="" disabled>Bitte auswählen</mat-option>
+          <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
+            {{kindergarden.name}}, {{kindergarden.address}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="addChildForm.get('kindergardenId').hasError('required')">Kindergarten ist erforderlich</mat-error>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <mat-slide-toggle formControlName="acceptTerms">Ich akzeptiere die Bedingungen</mat-slide-toggle>
+      <button mat-raised-button color="primary" type="submit">Anmelden</button>
+    </mat-card-actions>
+
+    <app-notification-toast *ngIf="showSuccessToast" (closeToast)="closeSuccessToast()"></app-notification-toast>
+
+  </mat-card>
+</form>

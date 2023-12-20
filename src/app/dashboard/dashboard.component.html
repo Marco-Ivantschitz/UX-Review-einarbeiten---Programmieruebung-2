@@ -1,0 +1,24 @@
+<!--
+<app-data [currentPage]="currentPage" (selectPageEvent)="receiveMessage($event)"></app-data>
+<br>
+<app-button [showAddData]="showAddData" (toggleButtonClickEvent)="toggleButtonClicked($event)"></app-button>
+<app-add-data *ngIf="showAddData" [currentPage]="currentPage"></app-add-data>
+-->
+
+
+
+<mat-card>
+    <mat-card-content>
+      <app-data [currentPage]="currentPage" (selectPageEvent)="receiveMessage($event)"></app-data>
+      <br>
+      <app-button [showAddData]="showAddData" (toggleButtonClickEvent)="toggleButtonClicked($event)"></app-button>
+      <mat-expansion-panel *ngIf="showAddData">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Add Data
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-add-data [currentPage]="currentPage"></app-add-data>
+      </mat-expansion-panel>
+    </mat-card-content>
+</mat-card>
