@@ -6,6 +6,7 @@ import { StoreService } from 'src/app/shared/store.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { NotificationService } from './notification.service';
 import { NotificationToastComponent } from './notification-toast.component';  // Vergessen Sie nicht, diese Zeile hinzuzufügen
+import { Kindergarden } from 'src/app/shared/interfaces/Kindergarden';
 
 @Component({
   selector: 'app-add-data',
@@ -13,6 +14,8 @@ import { NotificationToastComponent } from './notification-toast.component';  //
   styleUrls: ['./add-data.component.scss']
 })
 export class AddDataComponent implements OnInit {
+
+  kindergartens: Kindergarden[] = [];  // Deklaration der Eigenschaft kindergartens hinzugefügt
 
   constructor(
     private formbuilder: FormBuilder,
@@ -29,6 +32,14 @@ export class AddDataComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
+    this.backendService.getKindergardens().subscribe(() => {
+      // Kindergärten wurden erfolgreich geladen
+      // Hier können Sie weitere Aktionen ausführen, z.B. Standard-Kindergarten auswählen oder andere vorbereitende Maßnahmen
+  
+      // Füllen Sie das Dropdown-Feld mit den geladenen Kindergärten
+      this.kindergartens = this.storeService.kindergardens;
+    });
+  
     this.addChildForm = this.formbuilder.group({
       name: ['', [Validators.required]],
       kindergardenId: ['', Validators.required],
@@ -36,6 +47,7 @@ export class AddDataComponent implements OnInit {
       acceptTerms: [false, Validators.requiredTrue]
     });
   }
+  
 
   onSubmit() {
     if (this.addChildForm.valid) {

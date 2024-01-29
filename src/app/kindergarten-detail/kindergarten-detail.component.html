@@ -1,0 +1,12 @@
+<!-- kindergarten-detail.component.html -->
+<div *ngIf="kindergarten">
+    <h2>{{ kindergarten.name }}</h2>
+    <p>Adresse: {{ kindergarten.address }}</p>
+    <p>Betreiber: {{kindergarten.betreiber}}</p>
+    <p>Typ: {{ getTypText(kindergarten.typ) }}</p>
+  
+    <div *ngFor="let image of kindergarten.images">
+      <img [src]="image.url" alt="Kindergarten Image">
+    </div>
+  </div>
+  

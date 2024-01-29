@@ -28,10 +28,12 @@ import { MenuComponent } from './menu/menu.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './dashboard/add-data/notification.service';
-
-
-
-
+import { MatSortModule } from '@angular/material/sort';
+import { KindergartenService } from './shared/kindergarten.service';
+import { CommonModule } from '@angular/common';
+import { KindergartenDetailComponent } from './kindergarten-detail/kindergarten-detail.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { NotificationService } from './dashboard/add-data/notification.service';
     PaginationPipe,
     NotificationToastComponent,
     MenuComponent,
+    KindergartenDetailComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,9 +74,14 @@ import { NotificationService } from './dashboard/add-data/notification.service';
       positionClass: 'toast-center',
       preventDuplicates: true,
     }),
+    MatSortModule,
+    CommonModule,
+    MatProgressSpinnerModule,
+    LoadingSpinnerComponent,
   ],
   providers: [
     NotificationService,
+    KindergartenService,
   ],
   bootstrap: [AppComponent]
 

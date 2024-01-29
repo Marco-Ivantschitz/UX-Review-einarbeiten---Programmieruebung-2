@@ -15,4 +15,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openExternalLink() {
+    // Hier den Link zur externen Website einfügen
+    const externalLink = 'https://angular.io/guide/component-overview';
+    
+    // Öffne die externe Website in einem neuen Tab/Fenster
+    window.open(externalLink, '_blank');
+  }
 }

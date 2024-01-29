@@ -7,19 +7,22 @@
     <mat-card-content>
       <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Name" type="text" formControlName="name">
+        <input matInput placeholder="Name" type="text" formControlName="name"
+        matTooltip="Geben Sie den vollständigen Namen ein. Beispiel: Max Mustermann">
         <mat-error *ngIf="addChildForm.get('name').hasError('required')">Name ist erforderlich</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Geburtsdatum</mat-label>
-        <input matInput placeholder="Geburtsdatum" type="date" formControlName="birthDate">
+        <input matInput placeholder="Geburtsdatum" type="date" formControlName="birthDate"
+        matTooltip="Wählen Sie das Geburtsdatum aus. Beispiel: 01.01.2000">
         <mat-error *ngIf="addChildForm.get('birthDate').hasError('required')">Geburtsdatum ist erforderlich</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Kindergarten auswählen</mat-label>
-        <mat-select formControlName="kindergardenId">
+        <mat-select formControlName="kindergardenId" placeholder="Bitte Kindergarten auswählen"
+          matTooltip="Wählen Sie den Kindergarten aus, den Ihr Kind besuchen wird.">
           <mat-option [value]="" disabled>Bitte auswählen</mat-option>
           <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
             {{kindergarden.name}}, {{kindergarden.address}}
