@@ -77,7 +77,6 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     MatSortModule,
     CommonModule,
     MatProgressSpinnerModule,
-    LoadingSpinnerComponent,
   ],
   providers: [
     NotificationService,
